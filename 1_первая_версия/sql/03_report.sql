@@ -10,5 +10,6 @@ FROM order_items oi
 JOIN orders   o ON o.order_id   = oi.order_id
 JOIN products p ON p.product_id = oi.product_id
 LEFT JOIN product_groups g ON g.group_id = p.group_id   -- LEFT: товары без группы не теряем
+WHERE o.status <> 'cancelled'                           -- отменённые заказы - не продажи
 GROUP BY date_trunc('month', o.ordered_at), g.group_id, g.name, p.product_id, p.name
 ORDER BY month, product_group, product;
