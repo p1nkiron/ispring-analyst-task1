@@ -30,7 +30,10 @@ CREATE TABLE customers (
 CREATE TABLE orders (
     order_id    SERIAL PRIMARY KEY,
     customer_id INTEGER   NOT NULL REFERENCES customers (customer_id),
-    ordered_at  TIMESTAMP NOT NULL
+    ordered_at  TIMESTAMP NOT NULL,
+    -- отменённые заказы не считаются продажами
+    status      VARCHAR(20) NOT NULL DEFAULT 'new'
+                CHECK (status IN ('new','paid','shipped','cancelled'))
 );
 
 -- unit_price - цена на момент продажи: после смены цены старые продажи не меняются
