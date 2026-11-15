@@ -18,14 +18,15 @@ INSERT INTO product_prices (product_id, valid_from, price) VALUES
 INSERT INTO customers (customer_id, name, email) VALUES
  (1,'Анна','anna@example.com'), (2,'Борис','boris@example.com'), (3,'Вера','vera@example.com');
 
-INSERT INTO orders (order_id, customer_id, ordered_at) VALUES
- (1,1,'2025-12-20 12:00'),
- (2,2,'2026-01-10 10:00'),
- (3,1,'2026-01-25 18:30'),
- (4,3,'2026-02-03 09:15'),
- (5,2,'2026-02-14 20:00'),
- (6,3,'2026-02-28 23:30'),
- (7,1,'2026-03-01 00:00');
+INSERT INTO orders (order_id, customer_id, ordered_at, status) VALUES
+ (1,1,'2025-12-20 12:00','paid'),
+ (2,2,'2026-01-10 10:00','paid'),
+ (3,1,'2026-01-25 18:30','paid'),
+ (4,3,'2026-02-03 09:15','paid'),
+ (5,2,'2026-02-14 20:00','paid'),
+ (6,3,'2026-02-28 23:30','paid'),
+ (7,1,'2026-03-01 00:00','paid'),
+ (8,2,'2026-02-20 11:00','cancelled');  -- отменён: в отчёт попасть не должен
 
 INSERT INTO order_items (order_id, product_id, quantity, unit_price) VALUES
  (1,1,2,450), (1,5,3,80),
@@ -34,4 +35,5 @@ INSERT INTO order_items (order_id, product_id, quantity, unit_price) VALUES
  (4,1,1,500), (4,2,1,1200),
  (5,4,1,1800), (5,7,1,30),
  (6,5,2,80),
- (7,5,1,85), (7,1,3,500);
+ (7,5,1,85), (7,1,3,500),
+ (8,3,5,2500);
