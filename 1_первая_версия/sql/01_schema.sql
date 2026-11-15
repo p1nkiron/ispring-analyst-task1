@@ -17,7 +17,7 @@ CREATE TABLE products (
 CREATE TABLE product_prices (
     product_id INTEGER       NOT NULL REFERENCES products (product_id),
     valid_from DATE          NOT NULL,
-    price      NUMERIC(12,2) NOT NULL,
+    price      NUMERIC(12,2) NOT NULL CHECK (price >= 0),
     PRIMARY KEY (product_id, valid_from)
 );
 
@@ -37,7 +37,7 @@ CREATE TABLE orders (
 CREATE TABLE order_items (
     order_id   INTEGER       NOT NULL REFERENCES orders (order_id),
     product_id INTEGER       NOT NULL REFERENCES products (product_id),
-    quantity   INTEGER       NOT NULL,
-    unit_price NUMERIC(12,2) NOT NULL,
+    quantity   INTEGER       NOT NULL CHECK (quantity > 0),
+    unit_price NUMERIC(12,2) NOT NULL CHECK (unit_price >= 0),
     PRIMARY KEY (order_id, product_id)
 );
